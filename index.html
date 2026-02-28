@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TimoSites Whiteboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- MENU -->
+<div id="menu">
+  <h1>🖊️ Whiteboard</h1>
+  <button onclick="startBoard()">➕ New Whiteboard</button>
+  <button onclick="openGallery()">🖼️ Gallery</button>
+
+  <select id="themeSelect" onchange="changeTheme()">
+    <option value="system">System</option>
+    <option value="light">Light</option>
+    <option value="dark">Dark</option>
+  </select>
+</div>
+
+<!-- WHITEBOARD -->
+<div id="board" class="hidden">
+  <div id="toolbar">
+    <button onclick="setTool('pen')">✏️ Pen</button>
+    <button onclick="setTool('eraser')">🧽 Eraser</button>
+
+    <input type="color" id="colorPicker" value="#000000">
+    <input type="range" id="sizePicker" min="1" max="30" value="5">
+
+    <button onclick="saveBoard()">💾 Save</button>
+    <button onclick="exportBoard()">📤 Export</button>
+    <button onclick="startImport()">📥 Import</button>
+
+    <button onclick="clearBoard()">🗑️ Clear</button>
+    <button onclick="exitToMenu()">🏠 Exit</button>
+  </div>
+
+  <canvas id="canvas"></canvas>
+</div>
+
+<!-- GALLERY -->
+<div id="gallery" class="hidden">
+  <h2>📚 Local Gallery</h2>
+  <p>Tap an image to preview and load into the board</p>
+  <div id="galleryItems"></div>
+  <button id="galleryBackBtn" onclick="exitGallery()">⬅ Back</button>
+</div>
+
+<!-- IMPORT PREVIEW -->
+<div id="importPreview">
+  <div id="importPreviewContent">
+    <h3>Preview Import</h3>
+    <img id="previewImg" src="">
+    <div>
+      <button onclick="confirmImport('replace')">Replace</button>
+      <button onclick="confirmImport('add')">Add on top</button>
+      <button onclick="cancelImport()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<input type="file" id="importInput" accept="image/*" hidden>
+
+<script src="script.js"></script>
+</body>
+</html>
