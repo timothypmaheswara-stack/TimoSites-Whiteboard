@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TimoSites Whiteboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- MENU -->
+<div id="menu" class="menu-container">
+  <h1>🖊️ Whiteboard</h1>
+  <div class="menu-buttons">
+    <button onclick="startBoard()">➕ New Whiteboard</button>
+    <button onclick="openGallery()">🖼️ Gallery</button>
+    <button onclick="startImport()">📥 Import</button>
+
+    <select id="themeSelect" onchange="changeTheme()">
+      <option value="system">System</option>
+      <option value="light">Light</option>
+      <option value="dark">Dark</option>
+    </select>
+  </div>
+</div>
+
+<!-- WHITEBOARD -->
+<div id="board" class="hidden">
+  <div id="toolbar">
+    <div class="tool-group">
+      <button id="penBtn" class="tool-btn" onclick="setTool('pen')">✏️ Pen</button>
+      <button id="eraserBtn" class="tool-btn" onclick="setTool('eraser')">🧽 Eraser</button>
+      <button id="rectBtn" class="tool-btn" onclick="setTool('rect')">▭ Rect</button>
+      <button id="circleBtn" class="tool-btn" onclick="setTool('circle')">◯ Circle</button>
+      <button id="textBtn" class="tool-btn" onclick="setTool('text')">🔤 Text</button>
+    </div>
+
+    <input type="color" id="colorPicker" value="#000000">
+    <input type="range" id="sizePicker" min="1" max="30" value="5">
+
+    <button onclick="undo()">↩️ Undo</button>
+    <button onclick="redo()">↪️ Redo</button>
+
+    <button onclick="clearBoard()">🗑️ Clear</button>
+    <button onclick="saveBoard()">💾 Save</button>
+    <button onclick="exportBoard()">📤 Export</button>
+    <button onclick="exitToMenu()">🏠 Exit</button>
+  </div>
+
+  <div id="currentTool">Current Tool: Pen</div>
+  <canvas id="canvas"></canvas>
+</div>
+
+<!-- GALLERY -->
+<div id="gallery" class="hidden">
+  <h2>📚 Local Gallery</h2>
+  <p>Tap an image to load it</p>
+  <div id="galleryItems"></div>
+  <button onclick="exitGallery()">⬅ Back</button>
+</div>
+
+<input type="file" id="importInput" accept="image/*" hidden>
+
+<script src="script.js"></script>
+</body>
+</html>
