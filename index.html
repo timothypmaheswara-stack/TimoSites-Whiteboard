@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" href="file_00000000004072088110bfdeb6be5d9b.png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TimoSites Whiteboard</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Simple modal style */
+    #feedbackModal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right:0; bottom:0;
+      background: rgba(0,0,0,0.5);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    #feedbackModalContent {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 400px;
+    }
+    #feedbackModal textarea {
+      width: 100%;
+      height: 100px;
+      margin-bottom: 10px;
+    }
+    #feedbackModal button {
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- MENU -->
+<div id="menu" class="menu-container">
+  <h1>🖊️ Whiteboard</h1>
+  <div class="menu-buttons">
+    <button onclick="startBoard()">➕ New Whiteboard</button>
+    <button onclick="openGallery()">🖼️ Gallery</button>
+    <button onclick="startImport()">📥 Import</button>
+
+    <!-- Feedback button -->
+    <button onclick="showFeedbackModal()">💌 Feedback</button>
+
+    <select id="themeSelect" onchange="changeTheme()">
+      <option value="system">System</option>
+      <option value="light">Light</option>
+      <option value="dark">Dark</option>
+    </select>
+  </div>
+</div>
+
+<!-- Feedback Modal -->
+<div id="feedbackModal">
+  <div id="feedbackModalContent">
+    <h2>Send Feedback</h2>
+    <textarea id="feedbackText" placeholder="Write your feedback here..."></textarea>
+    <div>
+      <button onclick="submitFeedback()">Send</button>
+      <button onclick="closeFeedbackModal()">Cancel</button>
+    </div>
+    <p style="font-size:12px; opacity:0.7;">Feedback is sent with your app version.</p>
+  </div>
+</div>
+
+<!-- WHITEBOARD -->
+<div id="board" class="hidden">
+  <div id="toolbar">
+    <div class="tool-group">
+      <button id="penBtn" class="tool-btn" onclick="setTool('pen')">✏️ Pen</button>
+      <button id="eraserBtn" class="tool-btn" onclick="setTool('eraser')">🧽 Eraser</button>
+      <button id="rectBtn" class="tool-btn" onclick="setTool('rect')">▭ Rect</button>
+      <button id="circleBtn" class="tool-btn" onclick="setTool('circle')">◯ Circle</button>
+      <button id="textBtn" class="tool-btn" onclick="setTool('text')">🔤 Text</button>
+    </div>
+
+    <input type="color" id="colorPicker" value="#000000">
+    <input type="range" id="sizePicker" min="1" max="30" value="5">
+
+    <button onclick="undo()">↩️ Undo</button>
+    <button onclick="redo()">↪️ Redo</button>
+
+    <button onclick="clearBoard()">🗑️ Clear</button>
+    <button onclick="saveBoard()">💾 Save</button>
+    <button onclick="exportBoard()">📤 Export</button>
+    <button onclick="exitToMenu()">🏠 Exit</button>
+  </div>
+
+  <div id="currentTool">Current Tool: Pen</div>
+  <canvas id="canvas"></canvas>
+</div>
+
+<!-- GALLERY -->
+<div id="gallery" class="hidden">
+  <h2>📚 Local Gallery</h2>
+  <p>Tap an image to load it</p>
+  <div id="galleryItems"></div>
+  <button onclick="exitGallery()">⬅ Back</button>
+</div>
+
+<input type="file" id="importInput" accept="image/*" hidden>
+
+<!-- EmailJS SDK -->
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
