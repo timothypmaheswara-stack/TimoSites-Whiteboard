@@ -1,0 +1,100 @@
+:root {
+  --bg: #ffffff;
+  --text: #000000;
+  --panel: #eeeeee;
+}
+
+body.dark {
+  --bg: #121212;
+  --text: #ffffff;
+  --panel: #1e1e1e;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.hidden { display: none; }
+
+.menu-container, #gallery {
+  text-align: center;
+  padding: 20px;
+}
+
+.menu-buttons button {
+  margin: 5px;
+  padding: 10px 15px;
+  font-size: 16px;
+}
+
+#toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  background: var(--panel);
+  padding: 10px;
+}
+
+.tool-group {
+  display: flex;
+  gap: 5px;
+}
+
+.tool-btn.selected {
+  border: 2px solid #007bff;
+  background: #e0f0ff;
+}
+
+#currentTool {
+  padding: 6px;
+  font-weight: bold;
+}
+
+canvas {
+  display: block;
+  width: 100%;
+  height: calc(100vh - 160px);
+  touch-action: none;
+}
+
+#galleryItems {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#galleryItems img {
+  width: 120px;
+  margin: 10px;
+  border: 2px solid var(--panel);
+  cursor: pointer;
+}
+
+/* Feedback modal */
+#feedbackModal {
+  display: none;
+  position: fixed;
+  top: 0; left:0; right:0; bottom:0;
+  background: rgba(0,0,0,0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+#feedbackModalContent {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 400px;
+}
+#feedbackModal textarea {
+  width: 100%;
+  height: 100px;
+  margin-bottom: 10px;
+}
+#feedbackModal button {
+  margin-right: 10px;
+}
